@@ -16,9 +16,11 @@ for t in /usr/tmp /var/tmp /tmp; do
 	fi
 done
 
+
+CFLAGS="${CFLAGS} -I /usr/include/tirpc"
 trap 'rm -f ${BASE}$$.s ${BASE}$$.c ${BASE}$$.o ${BASE}$$; exit 1' 1 2 15
 
-LDLIBS=-lm
+LDLIBS="-lm -ltirpc"
 
 # check for HP-UX's ANSI compiler
 echo "main(int ac, char *av[]) { int i; }" > ${BASE}$$.c
